@@ -18,14 +18,10 @@ CREATE TABLE usuarios (
 
 -- Insertar usuario admin si no existe
 INSERT INTO usuarios (nombre, email, password, rol)
-SELECT * FROM (
-    SELECT 'admin', 'admin@gmail.com', 
-           '$2y$10$3K8gBl9CV1aZcc.Ow4QYZOBNLIVaOJOCbRoE/dDliVUKHPvGeuHsG',
-           'Administrador'
-) AS tmp
+SELECT 'admin', 'admin@gmail.com', '$2a$12$IYF9Ys//nXehAxGi.osCT..EONKvSfrMyH8tzUqBoLetyIBD4QPxi', 'Administrador'
 WHERE NOT EXISTS (
     SELECT 1 FROM usuarios WHERE email = 'admin@gmail.com'
-) LIMIT 1;
+);
 
 -- Tabla cargos
 CREATE TABLE cargos (
